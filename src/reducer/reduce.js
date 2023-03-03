@@ -4,9 +4,10 @@ export const reduce = (state, action) => {
         case "getProduct":
             return {
                 category: action.categoryProduct,
-                product: action.inputForm,
+                product: action.inputForm
             };
             break;
+
         default:
             return state;
     }

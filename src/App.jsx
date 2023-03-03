@@ -5,11 +5,13 @@ import { ContextPro } from "./context/ProductoContext";
 import { ShopCart } from "./components/Cart/ShopCart";
 
 export const App = () => {
+
   const [state, dispatch] = useReducer(reduce, {}, init);
 
   useEffect(() => {
     localStorage.setItem("product", JSON.stringify(state));
   }, [state]);
+
 
   return (
     <ContextPro.Provider value={{ state }}>
