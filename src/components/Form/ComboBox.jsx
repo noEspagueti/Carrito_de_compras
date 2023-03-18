@@ -7,7 +7,7 @@ export const ComboBox = ({ listCategories }) => {
     <select
       defaultValue={state.category}
       name="categoryProduct"
-      className="appearance-none px-2 text-gray-700 bg-indigo-100 rounded-lg p-2 text-center outline-none font-medium"
+      className="appearance-none px-2 text-gray-700 bg-slate-100 rounded-lg p-2 text-center outline-none font-medium"
     >
       {listCategories.map((item) => (
         <option key={item} value={item}>

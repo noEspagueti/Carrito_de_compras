@@ -2,11 +2,7 @@ import { useContext } from "react";
 import { ContextPro } from "../../context/ProductoContext";
 
 export const Cart = ({ product }) => {
-
-
-  const onAddRunAway = () => {
-    
-  };
+  const { addProduct } = useContext(ContextPro);
 
   return (
     <div className="w-full h-full flex flex-col items-start justify-center rounded-lg shadow-lg box-border bg-white gap-5">
@@ -18,8 +14,8 @@ export const Cart = ({ product }) => {
         <p>Precio</p>
         <p className="font-medium">S/. {product.price}</p>
         <button
-          onClick={onAddRunAway}
-          className="bg-indigo-600 p-1 rounded-lg text-white"
+          onClick={() => addProduct(product)}
+          className="bg-green-400 p-1 rounded-lg text-white"
         >
           Comprar
         </button>

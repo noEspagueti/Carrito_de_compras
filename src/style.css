@@ -1,4 +1,29 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
+}
+
+.fade {
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes cart {
+    0% {
+        transform: translateX(1000px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes closeCart {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(1000px);
+    }
 }

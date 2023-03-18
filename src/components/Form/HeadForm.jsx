@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { ComboBox, InputForm } from ".";
+import { BsCart3 } from "react-icons/bs";
+import { ContextPro } from "../../context/ProductoContext";
 
 export const HeadForm = ({ action }) => {
-  
+  const { setRunway } = useContext(ContextPro);
+
   const listCategoryProduct = [
     "men's clothing",
     "jewelery",
@@ -15,7 +19,7 @@ export const HeadForm = ({ action }) => {
     action({
       type: "getProduct",
       categoryProduct: data.get("categoryProduct"),
-      inputForm: data.get("inputForm")
+      inputForm: data.get("inputForm"),
     });
   };
 
@@ -26,6 +30,9 @@ export const HeadForm = ({ action }) => {
     >
       <ComboBox listCategories={listCategoryProduct} />
       <InputForm />
+      <a href="#" onClick={() => setRunway(true)}>
+        <BsCart3 />
+      </a>
     </form>
   );
 };

@@ -4,11 +4,10 @@ import { ContextPro } from "../../context/ProductoContext";
 import { useFetchData } from "../../hooks/useFetchData";
 
 export const ProductCart = () => {
-
-  const getProduct = useContext(ContextPro);
+  const { state } = useContext(ContextPro);
 
   const product = useFetchData().filter(
-    (item) => item.category === getProduct.state.category
+    (item) => item.category === state.category
   );
 
   return (
