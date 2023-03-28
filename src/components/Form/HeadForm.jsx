@@ -3,8 +3,8 @@ import { ComboBox, InputForm } from ".";
 import { BsCart3 } from "react-icons/bs";
 import { ContextPro } from "../../context/ProductoContext";
 
-export const HeadForm = ({ action }) => {
-  const { setRunway } = useContext(ContextPro);
+export const HeadForm = () => {
+  const { setRunway, dispatch } = useContext(ContextPro);
 
   const listCategoryProduct = [
     "men's clothing",
@@ -16,7 +16,7 @@ export const HeadForm = ({ action }) => {
   const onHandleChangeSubmit = (event) => {
     event.preventDefault();
     let data = new FormData(event.target);
-    action({
+    dispatch({
       type: "getProduct",
       categoryProduct: data.get("categoryProduct"),
       inputForm: data.get("inputForm"),
@@ -25,7 +25,7 @@ export const HeadForm = ({ action }) => {
 
   return (
     <form
-      className=" w-3/4 rounded-lg drop-shadow-lg flex gap-4 justify-center items-center bg-white flex-row p-4"
+      className=" w-full rounded-lg drop-shadow-lg flex gap-4 items-center bg-white flex-row p-4"
       onSubmit={(event) => onHandleChangeSubmit(event)}
     >
       <ComboBox listCategories={listCategoryProduct} />

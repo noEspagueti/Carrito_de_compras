@@ -3,14 +3,38 @@ export const cartReduce = (statePro, action) => {
         case "addCart":
             return [
                 {
-                    id: action.idProduct,
-                    category: action.category
+                    id: action.product.id,
+                    category: action.product.category,
+                    url: action.product.image,
+                    price: action.product.price,
+                    title: action.product.title,
+                    cant: 1
                 },
                 ...statePro
             ];
             break;
 
-            default: return [];
+        case "incrementProduct":
+            return statePro.map(item => {
+                if (item.id === action.idProduct) {
+                    item.cant = item.cant + 1;
+                };
+                return item;
+            });
+            break;
+
+        case "decrementProduct":
+            return statePro.map(item => {
+                if (item.id === action.idProduct) {
+                    item.cant = item.cant - 1;
+                }
+                return item;
+            });
+            break;
+
+        case "deleteProduct":
+            return statePro.filter(item => item.id !== action.idProduct);
+            break;
     }
 }
 

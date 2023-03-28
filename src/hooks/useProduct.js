@@ -1,19 +1,50 @@
 import { useReducer, useState } from "react";
 
 
-export const useProduct = (reduce, init , initialState) => {
+export const useProduct = (reduce, initialState, init) => {
     const [showRunway, setRunway] = useState(false);
     const [state, dispatch] = useReducer(reduce, initialState, init);
 
-    const addProduct = (product) => {
+    const addToCartProduct = (product) => {
+        let repeatItem = false;
+        state.forEach(element => {
+            if (element.id === product.id)  repeatItem = true;
+        });
+        if (repeatItem) {
+            return
+        } else {
+            dispatch(
+                {
+                    type: "addCart",
+                    product
+                }
+            );
+        }
+    };
+
+    const incrementProduct = (id) => {
         dispatch(
             {
-                type: "addCart",
-                category: product.category,
-                idProduct: product.id,
-
+                type: "incrementProduct",
+                idProduct: id
             }
         );
+    };
+    
+    const decrementProduct = (id, cant) => {
+        if (cant <= 1) {
+            dispatch({
+                type: "deleteProduct",
+                idProduct: id
+            });
+        } else {
+            dispatch(
+                {
+                    type: "decrementProduct",
+                    idProduct: id
+                }
+            );
+        }
     };
 
     return [
@@ -21,7 +52,9 @@ export const useProduct = (reduce, init , initialState) => {
         dispatch,
         showRunway,
         setRunway,
-        addProduct
+        addToCartProduct,
+        incrementProduct,
+        decrementProduct,
     ];
 
 };

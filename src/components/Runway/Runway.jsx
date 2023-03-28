@@ -1,18 +1,15 @@
 import React, { useContext } from "react";
 import { FiX } from "react-icons/fi";
 import { ContextPro } from "../../context/ProductoContext";
-import { useFetchData } from "../../hooks/useFetchData";
+import { CartRunway } from "./CartRunway";
 
 export const Runway = () => {
+
   const { setRunway, showRunway, addCart } = useContext(ContextPro);
-  console.log(addCart);
-  let list = useFetchData().filter(
-    (item) => item.category === addCart.category
-  );
-  console.log(list);
+
   return (
     <div
-      className="w-1/4 h-screen bg-slate-100 right-0 top-0 shadow-xl fixed z-10 fade"
+      className="w-1/4 bg-slate-100 shadow-xl fade top-0 right-0"
       style={{
         animationName: showRunway ? "cart" : "closeCart",
         display: showRunway ? "block" : "none",
@@ -30,13 +27,20 @@ export const Runway = () => {
           </a>
         </div>
       </section>
-      <section className="bg-white h-full my-3 p-10 block items-center justify-center text-center">
-        {addCart.length ||
-          ((
-            <h1 className="text-gray-700">
-              Aún no tienes productos en tu canasta
-            </h1>
-          ) && <div className="">{}</div>)}
+      <section className="bg-white h-full mt-3 block items-center justify-center text-center overflow-scroll container">
+        {(addCart.length > 0 &&
+          addCart.map((item) => {
+            return (
+              <CartRunway
+                key={item.id}
+                img={item.url}
+                price={item.price}
+                title={item.title}
+                cant={item.cant}
+                id={item.id}
+              />
+            );
+          })) || <h1>No hay nada en tu carrito</h1>}
       </section>
     </div>
   );

@@ -13,6 +13,8 @@ export const reduce = (state, action) => {
     }
 };
 
+
+
 export const init = () => {
     return JSON.parse(localStorage.getItem("product")) ?? {
         category: "men's clothing",
