@@ -8,10 +8,15 @@ export const useProduct = (reduce, initialState, init) => {
     const addToCartProduct = (product) => {
         let repeatItem = false;
         state.forEach(element => {
-            if (element.id === product.id)  repeatItem = true;
+            if (element.id === product.id) repeatItem = true;
         });
         if (repeatItem) {
-            return
+            dispatch(
+                {
+                    type: "incrementProduct",
+                    idProduct: product.id
+                }
+            );
         } else {
             dispatch(
                 {
@@ -30,7 +35,7 @@ export const useProduct = (reduce, initialState, init) => {
             }
         );
     };
-    
+
     const decrementProduct = (id, cant) => {
         if (cant <= 1) {
             dispatch({

@@ -16,7 +16,7 @@ export const CartRunway = ({ img, price, title, cant, id }) => {
           <h1 className="text-sm text-slate-700">
             {title.split(" ", 4).join(" ")}
           </h1>
-          <p className="font-bold text-xs">S/. {price}</p>
+          <p className="font-bold text-xs">S/. {price*cant}</p>
         </div>
       </div>
       <div className="bg-slate-100 w-24 h-10 rounded-full container box-border flex items-center justify-between px-2">

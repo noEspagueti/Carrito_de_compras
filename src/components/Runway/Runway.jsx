@@ -4,12 +4,10 @@ import { ContextPro } from "../../context/ProductoContext";
 import { CartRunway } from "./CartRunway";
 
 export const Runway = () => {
-
   const { setRunway, showRunway, addCart } = useContext(ContextPro);
-
   return (
     <div
-      className="w-1/4 bg-slate-100 shadow-xl fade top-0 right-0"
+      className="w-1/4 bg-slate-100 shadow-xl fade top-0 right-0 overflow-x-hidden"
       style={{
         animationName: showRunway ? "cart" : "closeCart",
         display: showRunway ? "block" : "none",
@@ -27,7 +25,7 @@ export const Runway = () => {
           </a>
         </div>
       </section>
-      <section className="bg-white h-full mt-3 block items-center justify-center text-center overflow-scroll container">
+      <section className="bg-white h-full mt-3 block items-center justify-center text-center overflow-y-scroll container">
         {(addCart.length > 0 &&
           addCart.map((item) => {
             return (
@@ -40,7 +38,16 @@ export const Runway = () => {
                 id={item.id}
               />
             );
-          })) || <h1>No hay nada en tu carrito</h1>}
+          })) || <h1 className="m-4">No hay nada en tu carrito</h1>}
+      </section>
+
+      <section className="p-5 w-full h-36 sticky bottom-0 z-50 flex flex-row items-center justify-center">
+        <button className="bg-green-400 w-full flex justify-center items-center rounded-lg py-4 gap-3 shadow-2xl">
+          <p className="text-white font-extrabold">Subtotal</p>
+          <p className="text-white">{`S/.${addCart
+            .reduce((acum, item) => acum + item.price * item.cant, 0)
+            .toFixed(2)}`}</p>
+        </button>
       </section>
     </div>
   );
